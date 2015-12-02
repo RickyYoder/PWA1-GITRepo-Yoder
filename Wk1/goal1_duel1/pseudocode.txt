@@ -1,0 +1,27 @@
+set playerOneName to "Kabal",
+set playerOneHealth to 100,
+set playerOneDamage to 50,
+
+set playerTwoName to "Kratos",
+set playerTwoHealth to 100,
+set playerTwoDamage to 50
+
+function fight(){
+	loop through rounds{
+		if fight is over then stop!
+		reduce health accordingly
+	}
+
+	execute winnerCheck()
+}
+
+function winnerCheck(){
+	if playerOneHealth is 0
+		then alert "Game over. <playerOneName> wins!"
+
+	else if playerTwoHealth is 0
+		then alert "Game over, <playerTwoName> wins!"
+
+	else if playerOneHealth is 0 AND playerTwoHealth is 0
+		then alert "Game over. TIE."
+}
