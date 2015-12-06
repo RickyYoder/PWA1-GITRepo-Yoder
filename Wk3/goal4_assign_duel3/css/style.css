@@ -29,6 +29,10 @@ progress{
 	margin:0 1em;
 }
 
+#round{
+	text-align:center;
+}
+
 #fight_btn{
 	position: absolute;
 	z-index: 25;

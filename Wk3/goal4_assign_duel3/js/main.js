@@ -12,13 +12,28 @@ var playerTwo = document.getElementById("playerTwo"),
 	playerTwoDamageCounter = 20,
 	playerTwoStatus = playerTwo.getElementsByTagName("h1")[0];
 
-var fightButton = document.getElementById("buttonred"),
+var bgmusic1 = document.getElementsByTagName("audio")[0],
+	bgmusic2 = document.getElementsByTagName("audio")[1],
+	fightButton = document.getElementById("buttonred"),
 	round = document.getElementById("round"),
 	roundNumber = 1,
 	restart = false;
 
+bgmusic1.addEventListener('ended', function(){
+    this.currentTime = 0;
+    this.pause();
+    bgmusic2.play();
+}, false);
+ 
+bgmusic2.addEventListener('ended', function(){
+    this.currentTime = 0;
+    this.pause();
+    bgmusic1.play();
+}, false);
+
 fightButton.addEventListener('click',function(){
 	if(restart == true){
+		//if we are restarting, reset everything to its original state
 		roundNumber = 1;
 		round.innerText = "Round "+roundNumber;
 		playerOneStatus.innerHTML = "";
@@ -32,6 +47,8 @@ fightButton.addEventListener('click',function(){
 		return;
 	}
 
+
+	//once reset, or, if in the middle of fighting, we fight
 	fight();
 });
 
@@ -39,10 +56,11 @@ function fight(){
 	var playerOneDamaged = Math.floor(Math.random() * (playerTwoDamageCounter - playerTwoDamageCounter/2) + playerTwoDamageCounter/2), //player one's damage
 		playerTwoDamaged = Math.floor(Math.random() * (playerOneDamageCounter - playerOneDamageCounter/2) + playerOneDamageCounter/2); //player two's damage
 
-	playerOneHealthBar.value = playerOneHealthValue.innerText = playerOneHealthBar.value - playerOneDamaged;
-	playerTwoHealthBar.value = playerTwoHealthValue.innerText = playerTwoHealthBar.value - playerTwoDamaged;
+	playerOneHealthBar.value = playerOneHealthValue.innerText = playerOneHealthBar.value - playerOneDamaged; //set player one's health bar and health value
+	playerTwoHealthBar.value = playerTwoHealthValue.innerText = playerTwoHealthBar.value - playerTwoDamaged; //set player two's health bar and health value
 
 	if(Number(playerOneHealthValue.innerText) < 0){
+		//always ensure that player health text never is a negative number
 		playerOneHealthBar.value = playerOneHealthValue.innerText = 0;
 	}
 	
@@ -66,7 +84,7 @@ function checkWinner(){
 		restart = true;
 		//return;
 	}
-	
+
 	if(playerTwoHealthBar.value === 0){
 		//player one wins
 		playerOneStatus.innerHTML = "Winner!";
@@ -84,3 +102,7 @@ function checkWinner(){
 
 	if(restart == true) fightButton.innerText = "Restart";
 }
+
+window.addEventListener('load',function(){
+	bgmusic1.play();
+});
