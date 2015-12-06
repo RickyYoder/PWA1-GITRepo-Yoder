@@ -5,17 +5,23 @@ var playerOne = document.getElementById("playerOne"), //parent container for pla
 	playerOneDamageCounter = 50;
 
 var playerTwo = document.getElementById("playerTwo"),
-	playerTwoName = playerOne.getElementsByTagName("strong")[0],
-	playerTwoHealthBar = playerOne.getElementsByTagName("progress")[0],
-	playerTwoHealthValue = playerOne.getElementsByTagName("span")[0],
+	playerTwoName = playerTwo.getElementsByTagName("strong")[0],
+	playerTwoHealthBar = playerTwo.getElementsByTagName("progress")[0],
+	playerTwoHealthValue = playerTwo.getElementsByTagName("span")[0],
 	playerTwoDamageCounter = 50;
 
-document.getElementById("buttonred").addEventListener('click',function(){
+var roundNumber = 1;
 
+document.getElementById("buttonred").addEventListener('click',function(){
+	fight();
 });
 
 function fight(){
+	var playerOneDamaged = Math.floor(Math.random() * (playerOneDamageCounter - playerOneDamageCounter/2) + playerOneDamageCounter/2),
+		playerTwoDamaged = Math.floor(Math.random() * (playerTwoDamageCounter - playerTwoDamageCounter/2) + playerTwoDamageCounter/2);
 
+	playerOneHealthBar.value = playerOneHealthBar.value - playerOneDamaged;
+	playerTwoHealthBar.value = playerTwoHealthBar.value - playerTwoDamaged;
 }
 
 function checkWinner(){
