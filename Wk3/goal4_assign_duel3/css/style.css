@@ -17,11 +17,12 @@ body{
 	height: 100%;
 }
 
-#kabal,#kratos{
+#playerOne,#playerTwo{
 	width:48%;
 	display:inline-block;
 	text-align:center;
 	float:left;
+	margin-top:1em;
 }
 
 #fight_btn{
