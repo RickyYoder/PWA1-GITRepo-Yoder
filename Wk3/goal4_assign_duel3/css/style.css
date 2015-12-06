@@ -25,6 +25,10 @@ body{
 	margin-top:1em;
 }
 
+progress{
+	margin:0 1em;
+}
+
 #fight_btn{
 	position: absolute;
 	z-index: 25;
