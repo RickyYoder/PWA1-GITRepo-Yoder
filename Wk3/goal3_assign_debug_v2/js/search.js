@@ -73,10 +73,7 @@
 	
 	// Put "No Results" message into page (DO NOT FIX THE HTML VAR NOR THE innerHTML)
 	var noMatch = function(){
-		var html = ''+
-			'<p>No Results found.</p>'+
-			'<p style="font-size:10px;">Try searching for "JavaScript".  Just an idea.</p>'
-		;
+		var html = ''+'<p>No Results found.</p>'+'<p style="font-size:10px;">Try searching for "JavaScript".  Just an idea.</p>';
 		resultsDIV.innerHTML = html;
 	};
 	
@@ -84,10 +81,7 @@
 	var showMatches = function(results){
 		
 		// THE NEXT 4 LINES ARE CORRECT.
-		var html = '<p>Results</p>', 
-			title, 
-			url
-		;
+		var html = '<p>Results</p>', title, url;
 		
 		// loop through all the results search() function
 		for(var i=0, j=results.length; i<j; i++){
