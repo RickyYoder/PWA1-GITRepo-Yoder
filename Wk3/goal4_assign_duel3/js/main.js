@@ -1,16 +1,21 @@
-var playerOne = document.getElementById("playerOne"), //parent container for player stats/name
-	playerOneName = playerOne.getElementsByTagName("strong")[0], //player name
-	playerOneHealthBar = playerOne.getElementsByTagName("progress")[0], //player health bar
-	playerOneHealthValue = playerOne.getElementsByTagName("span")[0], //player health value
-	playerOneDamageCounter = 20, //max damage player can deal out
-	playerOneStatus = playerOne.getElementsByTagName("h1")[0]; //whether they're a winner or a loser
+var p1r = document.getElementById("playerOne"), //reference to parent node for name/stats
+	p2r = document.getElementById("playerTwo");
 
-var playerTwo = document.getElementById("playerTwo"),
-	playerTwoName = playerTwo.getElementsByTagName("strong")[0],
-	playerTwoHealthBar = playerTwo.getElementsByTagName("progress")[0],
-	playerTwoHealthValue = playerTwo.getElementsByTagName("span")[0],
-	playerTwoDamageCounter = 20,
-	playerTwoStatus = playerTwo.getElementsByTagName("h1")[0];
+var playerOne = {
+	"name":p1r.getElementsByTagName("strong")[0], //player name
+	"healthBar":p1r.getElementsByTagName("progress")[0], //player health bar
+	"healthValue":p1r.getElementsByTagName("span")[0], //player health value
+	"damageCounter":20, //max damage player can deal out
+	"status":p1r.getElementsByTagName("h1")[0] //whether they're a winner or a loser
+};
+
+var playerTwo = {
+	"name":p2r.getElementsByTagName("strong")[0], //player name
+	"healthBar":p2r.getElementsByTagName("progress")[0], //player health bar
+	"healthValue":p2r.getElementsByTagName("span")[0], //player health value
+	"damageCounter":20, //max damage player can deal out
+	"status":p2r.getElementsByTagName("h1")[0] //whether they're a winner or a loser
+};
 
 var bgmusic1 = document.getElementsByTagName("audio")[0],
 	bgmusic2 = document.getElementsByTagName("audio")[1],
@@ -23,12 +28,14 @@ bgmusic1.addEventListener('ended', function(){
     this.currentTime = 0;
     this.pause();
     bgmusic2.play();
+    //we try our best to have a seamless loop for audio....
 }, false);
  
 bgmusic2.addEventListener('ended', function(){
     this.currentTime = 0;
     this.pause();
     bgmusic1.play();
+    //...by playing another audio element with the same file after the other is over, and repeating it
 }, false);
 
 fightButton.addEventListener('click',function(){
@@ -36,11 +43,11 @@ fightButton.addEventListener('click',function(){
 		//if we are restarting, reset everything to its original state
 		roundNumber = 1;
 		round.innerText = "Round "+roundNumber;
-		playerOneStatus.innerHTML = "";
-		playerTwoStatus.innerHTML = "";
+		playerOne.status.innerHTML = "";
+		playerTwo.status.innerHTML = "";
 
-		playerOneHealthBar.value = playerOneHealthValue.innerText = 100;
-		playerTwoHealthBar.value = playerTwoHealthValue.innerText = 100;
+		playerOne.healthBar.value = playerOne.healthValue.innerText = 100;
+		playerTwo.healthBar.value = playerTwo.healthValue.innerText = 100;
 
 		this.innerText = "FIGHT!";
 		restart = false;
@@ -53,19 +60,19 @@ fightButton.addEventListener('click',function(){
 });
 
 function fight(){
-	var playerOneDamaged = Math.floor(Math.random() * (playerTwoDamageCounter - playerTwoDamageCounter/2) + playerTwoDamageCounter/2), //player one's damage
-		playerTwoDamaged = Math.floor(Math.random() * (playerOneDamageCounter - playerOneDamageCounter/2) + playerOneDamageCounter/2); //player two's damage
+	var playerOneDamaged = Math.floor(Math.random() * (playerTwo.damageCounter - playerTwo.damageCounter/2) + playerTwo.damageCounter/2), //player one's damage
+		playerTwoDamaged = Math.floor(Math.random() * (playerOne.damageCounter - playerOne.damageCounter/2) + playerOne.damageCounter/2); //player two's damage
 
-	playerOneHealthBar.value = playerOneHealthValue.innerText = playerOneHealthBar.value - playerOneDamaged; //set player one's health bar and health value
-	playerTwoHealthBar.value = playerTwoHealthValue.innerText = playerTwoHealthBar.value - playerTwoDamaged; //set player two's health bar and health value
+	playerOne.healthBar.value = playerOne.healthValue.innerText = playerOne.healthBar.value - playerOneDamaged; //set player one's health bar and health value
+	playerTwo.healthBar.value = playerTwo.healthValue.innerText = playerTwo.healthBar.value - playerTwoDamaged; //set player two's health bar and health value
 
-	if(Number(playerOneHealthValue.innerText) < 0){
+	if(Number(playerOne.healthValue.innerText) < 0){
 		//always ensure that player health text never is a negative number
-		playerOneHealthBar.value = playerOneHealthValue.innerText = 0;
+		playerOne.healthBar.value = playerOne.healthValue.innerText = 0;
 	}
 	
-	if(Number(playerTwoHealthValue.innerText) < 0){
-		playerTwoHealthBar.value = playerTwoHealthValue.innerText = 0;
+	if(Number(playerTwo.healthValue.innerText) < 0){
+		playerTwo.healthBar.value = playerTwo.healthValue.innerText = 0;
 	}
 
 	roundNumber++;
@@ -77,25 +84,25 @@ function fight(){
 
 function checkWinner(){
 
-	if(playerOneHealthBar.value === 0){
+	if(playerOne.healthBar.value === 0){
 		//player two wins
-		playerTwoStatus.innerHTML = "Winner!";
-		playerOneStatus.innerHTML = "Loser!";
+		playerTwo.status.innerHTML = "Winner!";
+		playerOne.status.innerHTML = "Loser!";
 		restart = true;
 		//return;
 	}
 
-	if(playerTwoHealthBar.value === 0){
+	if(playerTwo.healthBar.value === 0){
 		//player one wins
-		playerOneStatus.innerHTML = "Winner!";
-		playerTwoStatus.innerHTML = "Loser!";
+		playerOne.status.innerHTML = "Winner!";
+		playerTwo.status.innerHTML = "Loser!";
 		restart = true;
 		//return;
 	}
 
-	if(playerOneHealthBar.value === 0 && playerTwoHealthBar.value === 0){
-		playerOneStatus.innerHTML = "Tie!";
-		playerTwoStatus.innerHTML = "Tie!";
+	if(playerOne.healthBar.value === 0 && playerTwo.healthBar.value === 0){
+		playerOne.status.innerHTML = "Tie!";
+		playerTwo.status.innerHTML = "Tie!";
 		restart = true;
 		//return;
 	}
