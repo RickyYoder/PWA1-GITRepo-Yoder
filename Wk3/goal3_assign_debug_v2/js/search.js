@@ -16,7 +16,7 @@
 		};
 		while(query.charAt(query.length-1) === ""){
 			query = query.substring(0, query.length-1);
-		;
+		}
 		
 		// Check search length, must have 3 characters
 		if(query.length < 3){
