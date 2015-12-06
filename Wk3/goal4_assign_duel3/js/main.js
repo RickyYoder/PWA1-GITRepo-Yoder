@@ -76,9 +76,10 @@ function fight(){
 	}
 
 	roundNumber++;
-
+	//update the current round number
 	round.innerText = "Round "+roundNumber;
 
+	//call checkWinner() to see if the fight is over
 	checkWinner();
 }
 
@@ -88,6 +89,8 @@ function checkWinner(){
 		//player two wins
 		playerTwo.status.innerHTML = "Winner!";
 		playerOne.status.innerHTML = "Loser!";
+		round.innerText = "Fighter 2 Wins";
+
 		restart = true;
 		//return;
 	}
@@ -96,6 +99,8 @@ function checkWinner(){
 		//player one wins
 		playerOne.status.innerHTML = "Winner!";
 		playerTwo.status.innerHTML = "Loser!";
+		round.innerText = "Fighter 1 Wins";
+
 		restart = true;
 		//return;
 	}
@@ -103,6 +108,8 @@ function checkWinner(){
 	if(playerOne.healthBar.value === 0 && playerTwo.healthBar.value === 0){
 		playerOne.status.innerHTML = "Tie!";
 		playerTwo.status.innerHTML = "Tie!";
+		round.innerText = "Both Fighters Die";
+
 		restart = true;
 		//return;
 	}
