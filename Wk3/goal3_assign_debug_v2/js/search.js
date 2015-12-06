@@ -5,7 +5,6 @@
 	var resultsDIV = document.getElementById("results"),
 		searchInput = document.forms[0].search,
 		currentSearch = '';
-	;
 	
 	// Validates search query
 	var validqte = function(query){
@@ -109,6 +108,6 @@
         // return false is needed for most events - this will be reviewed in upcoming course material
         // THE LINE DIRECTLY BELOW IS CORRECT
 		return false;
-	;
+	};
 
 })();
