@@ -17,6 +17,8 @@ var playerTwo = {
 	"status":p2r.getElementsByTagName("h1")[0] //whether they're a winner or a loser
 };
 
+var players = [playerOne,playerTwo];
+
 var bgmusic1 = document.getElementsByTagName("audio")[0],
 	bgmusic2 = document.getElementsByTagName("audio")[1],
 	fightButton = document.getElementById("buttonred"),
@@ -43,11 +45,11 @@ fightButton.addEventListener('click',function(){
 		//if we are restarting, reset everything to its original state
 		roundNumber = 1;
 		round.innerText = "Round "+roundNumber;
-		playerOne.status.innerHTML = "";
-		playerTwo.status.innerHTML = "";
+		players[0].status.innerHTML = "";
+		players[1].status.innerHTML = "";
 
-		playerOne.healthBar.value = playerOne.healthValue.innerText = 100;
-		playerTwo.healthBar.value = playerTwo.healthValue.innerText = 100;
+		players[0].healthBar.value = players[0].healthValue.innerText = 100;
+		players[1].healthBar.value = players[1].healthValue.innerText = 100;
 
 		this.innerText = "FIGHT!";
 		restart = false;
@@ -60,19 +62,19 @@ fightButton.addEventListener('click',function(){
 });
 
 function fight(){
-	var playerOneDamaged = Math.floor(Math.random() * (playerTwo.damageCounter - playerTwo.damageCounter/2) + playerTwo.damageCounter/2), //player one's damage
-		playerTwoDamaged = Math.floor(Math.random() * (playerOne.damageCounter - playerOne.damageCounter/2) + playerOne.damageCounter/2); //player two's damage
+	var playerOneDamaged = Math.floor(Math.random() * (players[1].damageCounter - players[1].damageCounter/2) + players[1].damageCounter/2), //player one's damage
+		playerTwoDamaged = Math.floor(Math.random() * (players[0].damageCounter - players[0].damageCounter/2) + players[0].damageCounter/2); //player two's damage
 
-	playerOne.healthBar.value = playerOne.healthValue.innerText = playerOne.healthBar.value - playerOneDamaged; //set player one's health bar and health value
-	playerTwo.healthBar.value = playerTwo.healthValue.innerText = playerTwo.healthBar.value - playerTwoDamaged; //set player two's health bar and health value
+	players[0].healthBar.value = players[0].healthValue.innerText = players[0].healthBar.value - playerOneDamaged; //set player one's health bar and health value
+	players[1].healthBar.value = players[1].healthValue.innerText = players[1].healthBar.value - playerTwoDamaged; //set player two's health bar and health value
 
-	if(Number(playerOne.healthValue.innerText) < 0){
+	if(Number(players[0].healthValue.innerText) < 0){
 		//always ensure that player health text never is a negative number
-		playerOne.healthBar.value = playerOne.healthValue.innerText = 0;
+		players[0].healthBar.value = players[0].healthValue.innerText = 0;
 	}
 	
-	if(Number(playerTwo.healthValue.innerText) < 0){
-		playerTwo.healthBar.value = playerTwo.healthValue.innerText = 0;
+	if(Number(players[1].healthValue.innerText) < 0){
+		players[1].healthBar.value = players[1].healthValue.innerText = 0;
 	}
 
 	roundNumber++;
@@ -85,29 +87,29 @@ function fight(){
 
 function checkWinner(){
 
-	if(playerOne.healthBar.value === 0){
+	if(players[0].healthBar.value === 0){
 		//player two wins
-		playerTwo.status.innerHTML = "Winner!";
-		playerOne.status.innerHTML = "Loser!";
+		players[1].status.innerHTML = "Winner!";
+		players[0].status.innerHTML = "Loser!";
 		round.innerText = "Fighter 2 Wins";
 
 		restart = true;
 		//return;
 	}
 
-	if(playerTwo.healthBar.value === 0){
+	if(players[1].healthBar.value === 0){
 		//player one wins
-		playerOne.status.innerHTML = "Winner!";
-		playerTwo.status.innerHTML = "Loser!";
+		players[0].status.innerHTML = "Winner!";
+		players[1].status.innerHTML = "Loser!";
 		round.innerText = "Fighter 1 Wins";
 
 		restart = true;
 		//return;
 	}
 
-	if(playerOne.healthBar.value === 0 && playerTwo.healthBar.value === 0){
-		playerOne.status.innerHTML = "Tie!";
-		playerTwo.status.innerHTML = "Tie!";
+	if(players[0].healthBar.value === 0 && players[1].healthBar.value === 0){
+		players[0].status.innerHTML = "Tie!";
+		players[1].status.innerHTML = "Tie!";
 		round.innerText = "Both Fighters Die";
 
 		restart = true;
