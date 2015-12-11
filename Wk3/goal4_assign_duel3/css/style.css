@@ -1,3 +1,13 @@
+@-webkit-keyframes statusAnim{
+	50%{
+		font-size:3em;
+	}
+
+	100%{
+		font-size:normal;
+	}
+}
+
 html,body{
 	width:100%;
 	min-height:100%;
@@ -9,6 +19,10 @@ html,body{
 
 body{
 	background: url('../images/grey_wash_wall.png') repeat;
+}
+
+h1{
+	-webkit-animation:statusAnim 1s infinite;
 }
 
 #scores{
@@ -26,7 +40,23 @@ body{
 }
 
 progress{
-	margin:0 1em;
+  /* Reset the default appearance */
+  -webkit-appearance: none;
+   appearance: none;
+  width: 250px;
+  height: 20px;
+  margin:0 1em;
+}
+
+progress[value]::-webkit-progress-value {
+	-webkit-transition:all .25s;
+	transition:all .25s;
+	-moz-box-shadow:inset 0px 1px 0px 0px #F20521;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #F20521;
+	box-shadow:inset 0px 1px 0px 0px #F20521;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #F20521), color-stop(1, #BA0419) );
+	background:-moz-linear-gradient( center top, #F20521 5%, #BA0419 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#40a3d7', endColorstr='#1b7fb3');
 }
 
 #round{
