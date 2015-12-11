@@ -8,6 +8,26 @@
 	}
 }
 
+@-moz-keyframes statusAnim{
+	50%{
+		font-size:3em;
+	}
+
+	100%{
+		font-size:normal;
+	}
+}
+
+@-keyframes statusAnim{
+	50%{
+		font-size:3em;
+	}
+
+	100%{
+		font-size:normal;
+	}
+}
+
 html,body{
 	width:100%;
 	min-height:100%;
@@ -23,6 +43,8 @@ body{
 
 h1{
 	-webkit-animation:statusAnim 1s infinite;
+	-moz-animation:statusAnim 1s infinite;
+	animation:statusAnim 1s infinite;
 }
 
 #scores{
