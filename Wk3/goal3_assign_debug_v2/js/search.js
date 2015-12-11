@@ -32,7 +32,6 @@
 	
 	// Finds search matches
 	var search = function(query){
-		
 		// split the user's search query string into an array
 		var queryArray = query.join(" ");
 		
@@ -58,8 +57,8 @@
 				if(compare !== -1){
 					results.push(db[i]);
 				}
-      }
-    }
+	      }
+	    }
 		
 		results.sort();
 		
