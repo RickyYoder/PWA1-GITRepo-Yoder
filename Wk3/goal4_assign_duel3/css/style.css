@@ -1,3 +1,7 @@
+/**
+	Animations for the words, "Winner", "Loser", and "Tie" when fighters die
+**/
+
 @-webkit-keyframes statusAnim{
 	50%{
 		font-size:3em;
@@ -28,7 +32,12 @@
 	}
 }
 
+/**
+
+**/
+
 html,body{
+	/*Global Styles*/
 	width:100%;
 	min-height:100%;
 	margin:0;
@@ -42,6 +51,7 @@ body{
 }
 
 h1{
+	/*Applying animation to player status*/
 	-webkit-animation:statusAnim 1s infinite;
 	-moz-animation:statusAnim 1s infinite;
 	animation:statusAnim 1s infinite;
@@ -49,8 +59,8 @@ h1{
 
 #scores{
 	background: #fff;
-	width: 100%;
-	height: 100%;
+	width:100%;
+	height:100%;
 }
 
 #playerOne,#playerTwo{
@@ -62,11 +72,11 @@ h1{
 }
 
 progress{
-  /* Reset the default appearance */
+  /*Reset to default appearance*/
   -webkit-appearance: none;
    appearance: none;
-  width: 250px;
-  height: 20px;
+  width:250px;
+  height:20px;
   margin:0 1em;
 }
 
@@ -86,9 +96,9 @@ progress[value]::-webkit-progress-value {
 }
 
 #fight_btn{
-	position: absolute;
-	z-index: 25;
-	margin: 30% 44%;
+	position:absolute;
+	z-index:25;
+	margin:30% 44%;
 }
 
 #fight_bg{
@@ -101,14 +111,14 @@ progress[value]::-webkit-progress-value {
 }
 
 #fight_bg img{
-	height: 100%;
-	width: 100%;
+	height:100%;
+	width:100%;
 }
 
 .heading{
-	color: #1c80b3; 
+	color:#1c80b3; 
 	font-family: Arial, Helvetica, sans-serif; 
-	font-size: 21px;
+	font-size:21px;
 }
 
 #buttonred {
